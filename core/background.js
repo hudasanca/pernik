@@ -1,5 +1,18 @@
 var muslimsalatApiKey = '91ed7f846c24025c3ef0496aadd49ab8';
+var monthly = null;
 
+/*
+* this is the event listener that defines what the app will do when it get
+* installed at the first time
+*/
+chrome.app.runtime.onInstalled.addListener(function(){
+  // this is where we should get the api of muslimsalat.com
+  // and store them to chrome local storage
+});
+
+/*
+* this is the event listener where the Application is launched
+*/
 chrome.app.runtime.onLaunched.addListener(function(){
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'http://muslimsalat.com/bangkalan/monthly.json?key='+muslimsalatApiKey, true);
@@ -9,6 +22,8 @@ chrome.app.runtime.onLaunched.addListener(function(){
     chrome.storage.local.set({
       "monthly": data
     });
+
+    monthly = data;
   }
 
   chrome.app.window.create('views/window.html', {
@@ -21,6 +36,11 @@ chrome.app.runtime.onLaunched.addListener(function(){
   xhr.send();
 });
 
+
+/*
+* adding listener on alarms event. This is absolutely where the alarms event of
+* prayers time is done
+*/
 chrome.alarms.onAlarm.addListener(function(alarm){
   chrome.app.window.create('views/adzan.html', {
     'outerBounds': {
