@@ -6,9 +6,7 @@
   "app": {
     "background": {
       "scripts": [
-        "core/background.js",
-        "core/alarms.js",
-        "core/libraries.js"
+        "core/background.js"
       ]
     }
   },

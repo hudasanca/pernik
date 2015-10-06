@@ -1,12 +1,7 @@
 var muslimsalatApiKey = '91ed7f846c24025c3ef0496aadd49ab8';
 var monthly = null;
 
-/*
-* this function called whenever the chrome browser opens
-* this function is where we load every variable that stored to
-* the chrome local storage, so we can use it directly
-*/
-initiates();
+inisialisasi();
 
 /*
 * this is the event listener that defines what the app will do when it get
@@ -29,6 +24,10 @@ chrome.runtime.onInstalled.addListener(function(){
 
 /*
 * this is the event listener where the Application is launched
+*//*
+* this function called whenever the chrome browser opens
+* this function is where we load every variable that stored to
+* the chrome local storage, so we can use it directly
 */
 chrome.app.runtime.onLaunched.addListener(function(){
   chrome.app.window.create('views/window.html', {
@@ -56,10 +55,14 @@ chrome.alarms.create('adzan', {
   delayInMinutes: 1
 });
 
-
-function initiates(){
+/*
+* this function called whenever the chrome browser opens
+* this function is where we load every variable that stored to
+* the chrome local storage, so we can use it directly
+*/
+function inisialisasi(){
   // get the monthly variable from local storage
-  chrome.storage.get('monthly', function(result){
+  chrome.storage.local.get('monthly', function(result){
     monthly = result.monthly;
   });
 }
