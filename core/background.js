@@ -2,40 +2,42 @@ var muslimsalatApiKey = '91ed7f846c24025c3ef0496aadd49ab8';
 var monthly = null;
 
 /*
+* this function called whenever the chrome browser opens
+* this function is where we load every variable that stored to
+* the chrome local storage, so we can use it directly
+*/
+initiates();
+
+/*
 * this is the event listener that defines what the app will do when it get
 * installed at the first time
 */
-chrome.app.runtime.onInstalled.addListener(function(){
+chrome.runtime.onInstalled.addListener(function(){
   // this is where we should get the api of muslimsalat.com
   // and store them to chrome local storage
+
+  /*
+  * first we need to check whether the variable month is null or not.
+  * If it is null, we need to get the data from the api of muslimsalat.
+  * But if not, we need to check, is the data relevant today
+  */
+
+  if (monthly == null) {
+    getDataFromMuslimSalat();
+  }
 });
 
 /*
 * this is the event listener where the Application is launched
 */
 chrome.app.runtime.onLaunched.addListener(function(){
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://muslimsalat.com/bangkalan/monthly.json?key='+muslimsalatApiKey, true);
-  xhr.onreadystatechange = function(e){
-    var data = JSON.parse(xhr.responseText);
-
-    chrome.storage.local.set({
-      "monthly": data
-    });
-
-    monthly = data;
-  }
-
   chrome.app.window.create('views/window.html', {
     'outerBounds': {
       'width': 400,
       'height': 500
     }
   });
-
-  xhr.send();
 });
-
 
 /*
 * adding listener on alarms event. This is absolutely where the alarms event of
@@ -54,6 +56,29 @@ chrome.alarms.create('adzan', {
   delayInMinutes: 1
 });
 
+
+function initiates(){
+  // get the monthly variable from local storage
+  chrome.storage.get('monthly', function(result){
+    monthly = result.monthly;
+  });
+}
+
+function getDataFromMuslimSalat(){
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'http://muslimsalat.com/bangkalan/monthly.json?key='+muslimsalatApiKey, true);
+  xhr.onreadystatechange = function(e){
+    var data = JSON.parse(xhr.responseText);
+
+    chrome.storage.local.set({
+      "monthly": data
+    });
+
+    monthly = data;
+  }
+
+  xhr.send();
+}
 
 // function checkTheTime(){
 //   var today = new Date();
