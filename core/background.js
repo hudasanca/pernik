@@ -7,7 +7,7 @@ var monthly = null;
 * the chrome local storage, so we can use it directly
 */
 initiates();
-
+// hello world
 /*
 * this is the event listener that defines what the app will do when it get
 * installed at the first time
