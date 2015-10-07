@@ -1,8 +1,12 @@
 var muslimsalatApiKey = '91ed7f846c24025c3ef0496aadd49ab8';
 var monthly = null;
 
-inisialisasi();
-
+/*
+* this function called whenever the chrome browser opens
+* this function is where we load every variable that stored to
+* the chrome local storage, so we can use it directly
+*/
+initiates();
 /*
 * this is the event listener that defines what the app will do when it get
 * installed at the first time
