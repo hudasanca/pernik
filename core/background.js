@@ -47,16 +47,21 @@ chrome.app.runtime.onLaunched.addListener(function(){
 * prayers time is done
 */
 chrome.alarms.onAlarm.addListener(function(alarm){
-  chrome.app.window.create('views/adzan.html', {
-    'outerBounds': {
-      'width': 800,
-      'height': 600
-    }
-  });
-});
+  if (alarm.name == "dhuhr") {
 
-chrome.alarms.create('adzan', {
-  delayInMinutes: 1
+  }
+  else {
+    chrome.app.window.create('views/adzan.html', {
+      'outerBounds': {
+        'width': 800,
+        'height': 600
+      }
+    });
+  }
+
+  chrome.alarms.clear(alarm.name, function(){
+    return;
+  })
 });
 
 /*
@@ -64,7 +69,7 @@ chrome.alarms.create('adzan', {
 * this function is where we load every variable that stored to
 * the chrome local storage, so we can use it directly
 */
-function inisialisasi(){
+function initiates(){
   // get the monthly variable from local storage
   chrome.storage.local.get('monthly', function(result){
     monthly = result.monthly;
@@ -87,36 +92,49 @@ function getDataFromMuslimSalat(){
   xhr.send();
 }
 
-// function checkTheTime(){
-//   var today = new Date();
-//   var date = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
-//   var hour = today.getHours();
-//   var minute = today.getMinutes();
-//   var second = today.getSeconds();
-//   var time = "";
-//   var postfix = "";
-//   if (hour > 12) {
-//     hour -= 12;
-//     postfix += " pm";
-//   }
-//   else{
-//     postfix += " am";
-//   }
-//
-//   time = hour+":"+minute+postfix;
-//
-//   console.log(time);
-//
-//   if (minute == 21){
-//     chrome.app.window.create('adzan.html', {
-//       'outerBounds': {
-//         'width': 800,
-//         'height': 600
-//       }
-//     });
-//   }
-//
-//   setTimeout(function(){
-//     checkTheTime();
-//   }, 30000);
-// }
+function checkTheTime(){
+  var today = new Date();
+  var query = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate()
+
+  var getId = -1;
+  for (var i = 0; i < monthly.items.length; i++){
+    var date_for = monthly.items[i].date_for;
+    if (date_for == query){
+      getId = i;
+    }
+  }
+
+  if (getId < 0)
+    return;
+
+  setAlarms(monthly.items[getId]);
+}
+
+function setAlarms(dayFromMuslimSalat){
+  /*
+  * di sini, parameter dayFromMuslimSalat adalah item api
+  * dari muslimsalat. Di situ sudah terdapat jam-jam sholat pada
+  * hari yang bersangkutan.
+  * Masalahnya, jam-jam yang disiapkan muslimsalat mengikuti format
+  * 12 jam, jadi ada am dan pm. Dan kita harus merubahnya ke bentuk 24 jam
+  * masalah lainnya lagi, bagaimana caranya? Karena data jam tadi bentuknya adalah
+  * string
+  *
+  * sedang pada interval alarm pada chrome extension, count down
+  * alarm didefinisikan dalam satuan menit
+  */
+
+  /*
+  * contoh "6:30 pm"
+  * pisahkan string di atas dengan spasi, hasilnya -> ["6:30", "pm"]
+  * setelah itu, pisahkan "6:30" dengan pemisah spasi
+  * hasilnya -> [["6", "30"], "pm"]
+  */
+
+  /*
+  * Setelah time fix, maka kalkulasi jarak interval antara jam sekarang
+  * dengan jam waktu sholat, dengan mengubah keduanya ke dalam satuan menit
+  */
+
+  // set the alarm for dhuhr
+}
