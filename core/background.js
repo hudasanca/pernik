@@ -130,11 +130,27 @@ function setAlarms(dayFromMuslimSalat){
   * setelah itu, pisahkan "6:30" dengan pemisah spasi
   * hasilnya -> [["6", "30"], "pm"]
   */
+  console.log('waktu ashar -> ' + dayFromMuslimSalat.asr);
 
   /*
   * Setelah time fix, maka kalkulasi jarak interval antara jam sekarang
   * dengan jam waktu sholat, dengan mengubah keduanya ke dalam satuan menit
   */
+  dayFromMuslimSalat.asr = dayFromMuslimSalat.asr.split(" ");
+  dayFromMuslimSalat.asr[0] = dayFromMuslimSalat.asr[0].split(":");
+  dayFromMuslimSalat.asr[0][0] = parseInt(dayFromMuslimSalat.asr[0][0]);
+  dayFromMuslimSalat.asr[0][1] = parseInt(dayFromMuslimSalat.asr[0][1]);
 
+  if(dayFromMuslimSalat.asr[1]=="pm"){
+    dayFromMuslimSalat.asr[0][0] = dayFromMuslimSalat.asr[0][0] + 12;
+  }
+
+  var today = new Date();
+
+  var hasil = ((dayFromMuslimSalat.asr[0][0]*60)+dayFromMuslimSalat.asr[0][1]) - ((today.getHours()*60) + today.getMinutes());
+  console.log(hasil);
   // set the alarm for dhuhr
+  chrome.alarms.create('asr', {
+    delayInMinutes: hasil
+  });
 }
