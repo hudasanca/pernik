@@ -84,22 +84,6 @@ function setAlarms(dayFromMuslimSalat){
   * hasilnya -> [["6", "30"], "pm"]
   */
 
-  /*
-  * Setelah time fix, maka kalkulasi jarak interval antara jam sekarang
-  * dengan jam waktu sholat, dengan mengubah keduanya ke dalam satuan menit
-  */
-  // var today = new Date();
-  //
-  // var hasil = ((dayFromMuslimSalat.asr[0][0]*60)+dayFromMuslimSalat.asr[0][1]) - ((today.getHours()*60) + today.getMinutes());
-  // console.log(hasil);
-  // set the alarm for dhuhr
-  chrome.alarms.create('asr', {
-    delayInMinutes: hasil
-  });
-}
-
-function splitString(dayFromMuslimSalat) {
-
   var waktuAdzan = dayFromMuslimSalat.asr+"+"+dayFromMuslimSalat.dhuhr+"+"+dayFromMuslimSalat.fajr+"+"+dayFromMuslimSalat.isha+"+"+dayFromMuslimSalat.maghrib;
   waktuAdzan = waktuAdzan.split("+");
   for (var i = 0; i < waktuAdzan.length; i++) {
@@ -112,4 +96,44 @@ function splitString(dayFromMuslimSalat) {
       waktuAdzan[i][0][0] = waktuAdzan[i][0][0] + 12;
     }
   }
+
+  /*
+  * Setelah time fix, maka kalkulasi jarak interval antara jam sekarang
+  * dengan jam waktu sholat, dengan mengubah keduanya ke dalam satuan menit
+  */
+
+// set every time to minutes
+  var asr = waktuAdzan[0][0][0]*60 + waktuAdzan[0][0][1];
+  var dhuhr = waktuAdzan[1][0][0]*60 + waktuAdzan[1][0][1];
+  var fajr = waktuAdzan[2][0][0]*60 + waktuAdzan[2][0][1];
+  var isha = waktuAdzan[3][0][0]*60 + waktuAdzan[3][0][1];
+  var maghrib = waktuAdzan[4][0][0]*60 + waktuAdzan[4][0][1];
+
+  // set time for today into minutes
+  var today = new Date();
+  today = today.getHours()*60 + today.getMinutes();
+
+// get the minutes countdown
+  asr = asr - today;
+  dhuhr = dhuhr - today;
+  fajr = fajr - today;
+  isha = isha - today;
+  maghrib = maghrib - today;
+
+  // create an alarms
+  chrome.alarms.create('asr', {
+    delayInMinutes: asr
+  });
+  chrome.alarms.create('dhuhr', {
+    delayInMinutes: dhuhr
+  });
+  chrome.alarms.create('fajr', {
+    delayInMinutes: fajr
+  });
+  chrome.alarms.create('isha', {
+    delayInMinutes: isha
+  });
+  chrome.alarms.create('maghrib', {
+    delayInMinutes: maghrib
+  });
 }
