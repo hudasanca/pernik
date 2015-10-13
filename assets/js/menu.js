@@ -2,6 +2,13 @@ $(document).ready(function(){
   setTimeout(function(){
     animateDownArrow();
   }, 300);
+
+  $('#adzan-btn').click(function(){
+    $(this).parent().hide();
+    $('.adzan').fadeIn(1000, function(){
+      $('.main-menu').hide();
+    });
+  });
 });
 
 function animateDownArrow(){
