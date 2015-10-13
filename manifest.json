@@ -6,7 +6,10 @@
   "app": {
     "background": {
       "scripts": [
-        "core/background.js"
+        "core/initialResources.js",
+        "core/onInstalled.js",
+        "core/onLaunched.js",
+        "core/onAlarms.js"
       ]
     }
   },
