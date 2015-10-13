@@ -120,21 +120,31 @@ function setAlarms(dayFromMuslimSalat){
   fajr = fajr - today;
   isha = isha - today;
   maghrib = maghrib - today;
-
+  console.log(maghrib);
   // create an alarms
-  chrome.alarms.create('asr', {
-    delayInMinutes: asr
-  });
-  chrome.alarms.create('dhuhr', {
-    delayInMinutes: dhuhr
-  });
-  chrome.alarms.create('fajr', {
-    delayInMinutes: fajr
-  });
-  chrome.alarms.create('isha', {
-    delayInMinutes: isha
-  });
-  chrome.alarms.create('maghrib', {
-    delayInMinutes: maghrib
-  });
+  if(asr > 0) {
+    chrome.alarms.create('asr', {
+      delayInMinutes: asr
+    });
+  }
+  if(dhuhr > 0) {
+    chrome.alarms.create('dhuhr', {
+      delayInMinutes: dhuhr
+    });
+  }
+  if(fajr > 0) {
+    chrome.alarms.create('fajr', {
+      delayInMinutes: fajr
+    });
+  }
+  if(isha > 0) {
+    chrome.alarms.create('isha', {
+      delayInMinutes: isha
+    });
+  }
+  if(maghrib > 0) {
+    chrome.alarms.create('maghrib', {
+      delayInMinutes: maghrib
+    });
+  }
 }
