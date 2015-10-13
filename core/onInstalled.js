@@ -1,17 +1,3 @@
-var muslimsalatApiKey = '91ed7f846c24025c3ef0496aadd49ab8';
-var monthly = null;
-
-/*
-* this function called whenever the chrome browser opens
-* this function is where we load every variable that stored to
-* the chrome local storage, so we can use it directly
-*/
-
-initiates();
-/*
-* this is the event listener that defines what the app will do when it get
-* installed at the first time
-*/
 chrome.runtime.onInstalled.addListener(function(){
   // this is where we should get the api of muslimsalat.com
   // and store them to chrome local storage
@@ -27,13 +13,6 @@ chrome.runtime.onInstalled.addListener(function(){
   }
 });
 
-/*
-* this is the event listener where the Application is launched
-*//*
-* this function called whenever the chrome browser opens
-* this function is where we load every variable that stored to
-* the chrome local storage, so we can use it directly
-*/
 chrome.app.runtime.onLaunched.addListener(function(){
   chrome.app.window.create('views/window.html', {
     'outerBounds': {
@@ -42,40 +21,6 @@ chrome.app.runtime.onLaunched.addListener(function(){
     }
   });
 });
-
-/*
-* adding listener on alarms event. This is absolutely where the alarms event of
-* prayers time is done
-*/
-chrome.alarms.onAlarm.addListener(function(alarm){
-  if (alarm.name == "dhuhr") {
-
-  }
-  else {
-    chrome.app.window.create('views/adzan.html', {
-      'outerBounds': {
-        'width': 800,
-        'height': 600
-      }
-    });
-  }
-
-  chrome.alarms.clear(alarm.name, function(){
-    return;
-  })
-});
-
-/*
-* this function called whenever the chrome browser opens
-* this function is where we load every variable that stored to
-* the chrome local storage, so we can use it directly
-*/
-function initiates(){
-  // get the monthly variable from local storage
-  chrome.storage.local.get('monthly', function(result){
-    monthly = result.monthly;
-  });
-}
 
 function getDataFromMuslimSalat(){
   var xhr = new XMLHttpRequest();
@@ -91,6 +36,13 @@ function getDataFromMuslimSalat(){
   }
 
   xhr.send();
+}
+
+function initiates(){
+  // get the monthly variable from local storage
+  chrome.storage.local.get('monthly', function(result){
+    monthly = result.monthly;
+  });
 }
 
 function checkTheTime(){
@@ -131,21 +83,11 @@ function setAlarms(dayFromMuslimSalat){
   * setelah itu, pisahkan "6:30" dengan pemisah spasi
   * hasilnya -> [["6", "30"], "pm"]
   */
-  console.log('waktu ashar -> ' + dayFromMuslimSalat.asr);
 
   /*
   * Setelah time fix, maka kalkulasi jarak interval antara jam sekarang
   * dengan jam waktu sholat, dengan mengubah keduanya ke dalam satuan menit
   */
-  // dayFromMuslimSalat.asr = dayFromMuslimSalat.asr.split(" ");
-  // dayFromMuslimSalat.asr[0] = dayFromMuslimSalat.asr[0].split(":");
-  //
-  // dayFromMuslimSalat.asr[0][0] = parseInt(dayFromMuslimSalat.asr[0][0]);
-  // dayFromMuslimSalat.asr[0][1] = parseInt(dayFromMuslimSalat.asr[0][1]);
-  //
-  // if(dayFromMuslimSalat.asr[1]=="pm"){
-  //   dayFromMuslimSalat.asr[0][0] = dayFromMuslimSalat.asr[0][0] + 12;
-  // }
   // var today = new Date();
   //
   // var hasil = ((dayFromMuslimSalat.asr[0][0]*60)+dayFromMuslimSalat.asr[0][1]) - ((today.getHours()*60) + today.getMinutes());
@@ -170,10 +112,4 @@ function splitString(dayFromMuslimSalat) {
       waktuAdzan[i][0][0] = waktuAdzan[i][0][0] + 12;
     }
   }
-}
-
-var wahid = "Wahid";
-
-function tes(){
-  console.log("called from tes.js");
 }
