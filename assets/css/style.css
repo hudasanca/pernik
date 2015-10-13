@@ -3,6 +3,17 @@ p.count-down{
   text-align: center;
 }
 
+.down-arrow{
+  opacity: 0;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+}
+
+.logo{
+  opacity: 0;
+}
+
 .frame{
     display: flex;
     align-items: center;
