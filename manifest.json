@@ -14,8 +14,8 @@
     }
   },
   "icons": {
-    "16": "assets/images/calculator-16.png",
-    "128": "assets/images/calculator-128.png"
+    "16": "assets/images/logo-16.png",
+    "128": "assets/images/logo-128.png"
   },
   "permissions": [
     "http://muslimsalat.com/*",
