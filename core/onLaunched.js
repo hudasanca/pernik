@@ -1,6 +1,10 @@
 initiates();
-var timer = setTimeout(monthlyFull, 2000);
+var timer = setTimeout(isMonthlyFull, 2000);
 
-function monthlyFull() {
-  checkTheTime();
+function isMonthlyFull() {
+  if(monthly == null) {
+    setTimeout(isMonthlyFull, 2000);
+  } else {
+    checkTheTime();
+  }
 }

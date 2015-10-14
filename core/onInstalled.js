@@ -113,14 +113,20 @@ function setAlarms(dayFromMuslimSalat){
   // set time for today into minutes
   var today = new Date();
   today = today.getHours()*60 + today.getMinutes();
-
+console.log(isha);
+console.log(today);
 // get the minutes countdown
   asr = asr - today;
+  console.log(asr);
   dhuhr = dhuhr - today;
+  console.log(dhuhr);
   fajr = fajr - today;
+  console.log(fajr);
   isha = isha - today;
+  console.log(isha);
   maghrib = maghrib - today;
   console.log(maghrib);
+
   // create an alarms
   if(asr > 0) {
     chrome.alarms.create('asr', {
