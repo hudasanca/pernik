@@ -3,11 +3,20 @@ p.count-down{
   text-align: center;
 }
 
+.bottom{
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
 .down-arrow{
   opacity: 0;
   border-radius: 10px;
   padding: 10px;
   margin: auto;
+  display: block;
 }
 
 .logo{
@@ -25,16 +34,26 @@ p.count-down{
 }
 
 .inactive{
-  
+
 }
 
 .main-menu{
-    background-color: rgb(55, 50, 93);
+    background-color: #2b334f;
     color: white;
 }
 
 .adzan{
   background-color: rgb(200, 80, 80);
+  color: white;
+}
+
+.news{
+  background-color: #2e5367;
+  color: white;
+}
+
+.setting{
+  background-color: #4B77BE;
   color: white;
 }
 

@@ -1,11 +1,31 @@
+var activeCard = null;
+var delay = 700;
+
 $(document).ready(function(){
   setTimeout(function(){
     animateDownArrow();
   }, 300);
 
   $('#adzan-btn').click(function(){
-    showAdzan($(this));
+    showCard($(this));
   });
+
+  $('#news-btn').click(function(){
+    showCard($(this));
+  });
+
+  $('#setting-btn').click(function(){
+    showCard($(this));
+  });
+
+  $('.back-btn').click(function(){
+    closeCard();
+  });
+
+  //activate tooltip
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 });
 
 function animateDownArrow(){
@@ -23,23 +43,50 @@ function animateDownArrow(){
   })
 }
 
-function showAdzan(me){
-  me.parent().hide();
+function showCard(me){
+  me.parent().parent().css('opacity', '0');
   $('.main-menu').animate({
     width: '50%',
     left: '25%',
-    top: '-=200',
+    top: '-=250',
     opacity: '0'
-  });
+  }, delay);
 
-  $('.adzan').css({
-    'top': '200px',
+  $(me.attr('data-page-menu')).css({
+    'top': '100%',
     'display': 'flex'
   });
 
-  $('.adzan').animate({
+  $(me.attr('data-page-menu')).animate({
+    top: '0',
+    left: '0',
+    opacity: '1'
+  }, delay, function(){
+    $('.down-arrow').css({
+      opacity: '0',
+      'border-radius': '10px',
+      padding: '10px',
+      margin: 'auto',
+      display: 'block'
+    })
+  });
+
+  activeCard = me.attr('data-page-menu');
+}
+
+function closeCard(){
+  $(activeCard).animate({
+    'top': '500px'
+  }, delay, function(){
+    activeCard = null;
+  });
+
+  $('.main-menu').animate({
     width: '100%',
+    left: '0%',
     top: '0',
     opacity: '1'
+  }, delay, function(){
+    animateDownArrow()
   });
 }

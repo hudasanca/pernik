@@ -114,11 +114,11 @@ function setAlarms(dayFromMuslimSalat){
   // store
   chrome.storage.local.set({
     'adzanList': [
-      {"ashar": asr},
-      {"dhuhur": dhuhr},
       {"shubuh": fajr},
-      {"isya": isha},
-      {"maghrib": maghrib}
+      {"dhuhur": dhuhr},
+      {"ashar": asr},
+      {"maghrib": maghrib},
+      {"isya": isha}
     ]
   });
 

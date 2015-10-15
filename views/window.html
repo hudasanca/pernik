@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/assets/css/style.css" media="screen" title="no title" charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body>
+  <body style="background-color: black">
       <div class="container-fluid">
         <div class="main-menu card">
           <div class="content">
@@ -16,16 +16,35 @@
             </div>
             <div class="down-arrow">
               <div class="btn-group">
-                <button id="adzan-btn" class="btn btn-default">Adzan</button>
-                <button id="news-btn" class="btn btn-default">News</button>
-                <button id="setting-btn" class="btn btn-default">Setting</button>
+                <button id="adzan-btn" data-page-menu=".adzan" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Adzan"><i class="glyphicon glyphicon-bell"></i></button>
+                <button id="news-btn" data-page-menu=".news" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="News"><i class="glyphicon glyphicon-globe"></i></button>
+                <button id="setting-btn" data-page-menu=".setting" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Setting"><i class="glyphicon glyphicon-wrench"></i></button>
               </div>
             </div>
           </div>
         </div>
-        <div class="adzan card" style="display:none;opacity:0">
+        <div class="adzan card" style="display:none;">
           <div class="content">
-            <h1>Adzan</h1>
+            <div class="adzan-list"></div>
+            <div class="bottom">
+              <button class="back-btn btn btn-default" data-toggle="tooltip" data-placement="top" title="Back"><i class="glyphicon glyphicon-chevron-down"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="news card" style="display:none;">
+          <div class="content">
+            <h1>News</h1>
+            <div class="bottom">
+              <button class="back-btn btn btn-default" data-toggle="tooltip" data-placement="top" title="Back"><i class="glyphicon glyphicon-chevron-down"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="setting card" style="display:none;">
+          <div class="content">
+            <h1>Setting</h1>
+            <div class="bottom">
+              <button class="back-btn btn btn-default" data-toggle="tooltip" data-placement="top" title="Back"><i class="glyphicon glyphicon-chevron-down"></i></button>
+            </div>
           </div>
         </div>
       </div>
@@ -33,5 +52,6 @@
       <script src="/assets/js/load.js"></script>
       <script src="/assets/js/bootstrap.min.js"></script>
       <script src="/assets/js/menu.js"></script>
+      <script src="/assets/js/adzan-list.js"></script>
   </body>
 </html>
