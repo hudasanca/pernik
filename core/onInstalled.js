@@ -33,6 +33,7 @@ function getDataFromMuslimSalat(){
       "monthly": data
     });
 
+
     monthly = data;
   }
 
@@ -109,6 +110,15 @@ function setAlarms(dayFromMuslimSalat){
   var fajr = waktuAdzan[2][0][0]*60 + waktuAdzan[2][0][1];
   var isha = waktuAdzan[3][0][0]*60 + waktuAdzan[3][0][1];
   var maghrib = waktuAdzan[4][0][0]*60 + waktuAdzan[4][0][1];
+
+  // store
+  chrome.storage.local.set({
+    "ashar": asr,
+    "dhuhur": dhuhr,
+    "shubuh": fajr,
+    "isya": isha,
+    "maghrib": maghrib
+  });
 
   // set time for today into minutes
   var today = new Date();
