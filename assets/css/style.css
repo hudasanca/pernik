@@ -24,8 +24,12 @@ p.count-down{
   height: 100%;
 }
 
+.inactive{
+  
+}
+
 .main-menu{
-    background-color: rgb(228, 221, 213);
+    background-color: rgb(55, 50, 93);
     color: white;
 }
 

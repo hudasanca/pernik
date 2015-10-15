@@ -4,17 +4,14 @@ $(document).ready(function(){
   }, 300);
 
   $('#adzan-btn').click(function(){
-    $(this).parent().hide();
-    $('.adzan').fadeIn(1000, function(){
-      $('.main-menu').hide();
-    });
+    showAdzan($(this));
   });
 });
 
 function animateDownArrow(){
   $('.down-arrow').animate({
     opacity: 1
-  }, 1000, function(){
+  }, 500, function(){
     $('.logo').animate({
       opacity: 1
     })
@@ -24,4 +21,25 @@ function animateDownArrow(){
     'margin-top': 100,
     'margin-bottom': 100
   })
+}
+
+function showAdzan(me){
+  me.parent().hide();
+  $('.main-menu').animate({
+    width: '50%',
+    left: '25%',
+    top: '-=200',
+    opacity: '0'
+  });
+
+  $('.adzan').css({
+    'top': '200px',
+    'display': 'flex'
+  });
+
+  $('.adzan').animate({
+    width: '100%',
+    top: '0',
+    opacity: '1'
+  });
 }
