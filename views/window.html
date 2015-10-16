@@ -7,7 +7,7 @@
   </head>
   <body style="background-color: black">
       <div class="container-fluid">
-        <div class="main-menu card">
+        <div class="main-menu card middle">
           <div class="content">
             <h1>Pernik 2015</h1>
             <small>@kamusft</small>
@@ -17,13 +17,13 @@
             <div class="down-arrow">
               <div class="btn-group">
                 <button id="adzan-btn" data-page-menu=".adzan" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Adzan"><i class="glyphicon glyphicon-bell"></i></button>
+                <button id="menu-btn" data-page-menu=".menu" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="About Pernik"><i class="glyphicon glyphicon-fire"></i></button>
                 <button id="news-btn" data-page-menu=".news" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="News"><i class="glyphicon glyphicon-globe"></i></button>
-                <button id="setting-btn" data-page-menu=".setting" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Setting"><i class="glyphicon glyphicon-wrench"></i></button>
               </div>
             </div>
           </div>
         </div>
-        <div class="adzan card" style="display:none;">
+        <div class="adzan card middle" style="display:none;">
           <div class="content">
             <div class="adzan-list"></div>
             <div class="bottom">
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div class="news card" style="display:none;">
+        <div class="news card middle" style="display:none;">
           <div class="content">
             <h1>News</h1>
             <div class="bottom">
@@ -39,9 +39,34 @@
             </div>
           </div>
         </div>
-        <div class="setting card" style="display:none;">
+        <div class="menu card middle" style="display:none; align-items: none;">
           <div class="content">
-            <h1>Setting</h1>
+            <div id="page-1" class="card middle">
+              <div class="content">
+                <h2>Apa itu Pernik?</h2>
+              </div>
+            </div>
+            <div id="page-2" class="card middle" style="background-color: red; display:none">
+              <div class="content">
+                <h2>Pernik adalah akronim dari Pekan Religi Teknik. Acara tahunan dari UKMF Keluarga Muslim Fakultas Teknik atau biasa dikenal Kamus FT</h2>
+              </div>
+            </div>
+            <div id="page-3" class="card middle" style="background-color: green; display:none">
+              <div class="content">
+                <h2>Apa itu Pernik?</h2>
+              </div>
+            </div>
+
+            <div class="nav-right">
+              <i id="menu-previous-btn" class="glyphicon glyphicon-chevron-up" style="cursor: pointer" data-toggle="tooltip" data-placement="left" title="previous"></i><br>
+              <i id="menu-next-btn" class="glyphicon glyphicon-chevron-down" style="cursor: pointer" data-toggle="tooltip" data-placement="left" title="next"></i><br>
+            </div>
+            <div class="nav-left">
+              <i class="glyphicon glyphicon-unchecked active"></i><br>
+              <i class="glyphicon glyphicon-unchecked"></i><br>
+              <i class="glyphicon glyphicon-unchecked"></i><br>
+              <i class="glyphicon glyphicon-unchecked"></i><br>
+            </div>
             <div class="bottom">
               <button class="back-btn btn btn-default" data-toggle="tooltip" data-placement="top" title="Back"><i class="glyphicon glyphicon-chevron-down"></i></button>
             </div>

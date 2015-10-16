@@ -14,7 +14,7 @@ $(document).ready(function(){
     showCard($(this));
   });
 
-  $('#setting-btn').click(function(){
+  $('#menu-btn').click(function(){
     showCard($(this));
   });
 
@@ -69,6 +69,18 @@ function showCard(me){
       margin: 'auto',
       display: 'block'
     })
+
+    if (me.attr('data-page-menu') == ".menu") {
+      $('.nav-right').fadeIn();
+      $('.nav-left').fadeIn();
+
+      $('.nav-right').css({
+        'top': ($(window).height()/2) - ($('.nav-right').height()/2)
+      });
+      $('.nav-left').css({
+        'top': ($(window).height()/2) - ($('.nav-left').height()/2)
+      });
+    }
   });
 
   activeCard = me.attr('data-page-menu');
@@ -80,6 +92,9 @@ function closeCard(){
   }, delay, function(){
     activeCard = null;
   });
+
+  $('.nav-right').fadeOut();
+  $('.nav-left').fadeOut();
 
   $('.main-menu').animate({
     width: '100%',
