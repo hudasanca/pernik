@@ -10,7 +10,17 @@ chrome.alarms.onAlarm.addListener(function(alarm){
 
   chrome.alarms.clear(alarm.name, function(){
     return;
-  })
+  });
+
+  var opt = {
+    type: "basic",
+    title: "Primary Title",
+    message: "Primary message to display"
+  }
+
+  chrome.notifications.create('adzan', opt, function(){
+
+  });
 });
 
 function audioPlay() {
