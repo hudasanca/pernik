@@ -8,19 +8,21 @@ chrome.alarms.onAlarm.addListener(function(alarm){
 
   audioPlay();
 
-  chrome.alarms.clear(alarm.name, function(){
-    return;
-  });
-
   var opt = {
     type: "basic",
-    title: "Primary Title",
-    message: "Primary message to display"
+    title: alarm.name,
+    message: "Sudah masuk waktu adzan, yuk sholat berjamaah :)",
+    iconUrl: "/assets/images/logo-128.png"
   }
 
   chrome.notifications.create('adzan', opt, function(){
 
   });
+
+  chrome.alarms.clear(alarm.name, function(){
+    return;
+  });
+
 });
 
 function audioPlay() {
