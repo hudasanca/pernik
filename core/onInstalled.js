@@ -13,6 +13,10 @@ chrome.runtime.onInstalled.addListener(function(){
   }
 });
 
+chrome.runtime.onStartup.addListener(function () {
+    window.alarm_suffix = Date.now();
+});
+
 chrome.app.runtime.onLaunched.addListener(function(){
   chrome.app.window.create('views/window.html', {
     'outerBounds': {
@@ -125,7 +129,6 @@ function setAlarms(dayFromMuslimSalat){
   // set time for today into minutes
   var today = new Date();
   today = today.getHours()*60 + today.getMinutes();
-console.log(isha);
 console.log(today);
 // get the minutes countdown
   asr = asr - today;

@@ -1,10 +1,10 @@
 chrome.alarms.onAlarm.addListener(function(alarm){
-  chrome.app.window.create('views/adzan.html', {
-    'outerBounds': {
-      'width': 800,
-      'height': 600
-    }
-  });
+  // chrome.app.window.create('views/adzan.html', {
+  //   'outerBounds': {
+  //     'width': 800,
+  //     'height': 600
+  //   }
+  // });
 
   audioPlay();
 
@@ -26,6 +26,6 @@ chrome.alarms.onAlarm.addListener(function(alarm){
 });
 
 function audioPlay() {
-  var audio = new Audio('/assets/Audio/098.mp3');
+  var audio = new Audio('/assets/Audio/adhan.mp3');
   audio.play();
 }
