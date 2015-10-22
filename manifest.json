@@ -6,9 +6,11 @@
   "app": {
     "background": {
       "scripts": [
+        "assets/js/jquery.min.js",
         "core/initialResources.js",
         "core/onInstalled.js",
         "core/onLaunched.js",
+        "core/getFromTwitter.js",
         "core/onAlarms.js"
       ]
     }
@@ -19,6 +21,7 @@
   },
   "permissions": [
     "http://muslimsalat.com/*",
+    "http://localhost/*",
     "storage",
     "alarms",
     "background",
