@@ -21,7 +21,7 @@
   },
   "permissions": [
     "http://muslimsalat.com/*",
-    "http://localhost/*",
+    "http://lifehacksindo.com/*",
     "storage",
     "alarms",
     "background",

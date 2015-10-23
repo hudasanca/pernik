@@ -1,11 +1,11 @@
 function getFromTwitter(){
   $.ajax({
-    url: 'http://localhost/twitter/get_tweets.php?count=20',
+    url: 'http://lifehacksindo.com/pernik/get_tweets.php?count=30',
     dataType: 'json',
     success: function (data){
       var newTweets = data;
 
-        newTweets = filterByHashtag(newTweets, 'motivation');
+        newTweets = filterByHashtag(newTweets, 'pernik2015');
 
         chrome.storage.local.get('tweets', function (result){
 
@@ -21,11 +21,11 @@ function getFromTwitter(){
             // jika di index ke-0 dari variable, id tweetnya berbeda dengan
             // yang tersimpan di local, maka ada tweet yang baru
             console.log("tweets -> "+tweets);
-            if (tweets[0].id != newTweets[0].id) {
+            if (tweets[0].id < newTweets[0].id) {
               // cari dan hitung ada berapa tweet baru, lantas push notif
               // satu per satu
               for (var i = 0; i < newTweets.length; i++) {
-                if (tweets[0].id != newTweets[i].id) {
+                if (tweets[0].id < newTweets[i].id) {
                   var opt = {
                     type: "basic",
                     title: "News!",
