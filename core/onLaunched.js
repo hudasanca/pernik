@@ -8,3 +8,13 @@ function isMonthlyFull() {
     checkTheTime();
   }
 }
+
+chrome.notifications.onClicked.addListener(function () {
+  chrome.app.window.create('views/window.html', {
+    'outerBounds': {
+      'width': 400,
+      'height': 500
+    },
+    "resizable" : false,
+  });
+});
