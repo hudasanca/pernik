@@ -66,7 +66,7 @@ function checkTheTime(){
   if (getId < 0)
     return;
 
-  setAlarms(monthly.items[getId]);
+    setAlarms(monthly.items[getId]);
 }
 
 function setAlarms(dayFromMuslimSalat){
@@ -129,18 +129,12 @@ function setAlarms(dayFromMuslimSalat){
   // set time for today into minutes
   var today = new Date();
   today = today.getHours()*60 + today.getMinutes();
-console.log(today);
 // get the minutes countdown
-  asr = asr - today;
-  console.log(asr);
+  asr = (asr - today) + 20;
   dhuhr = dhuhr - today;
-  console.log(dhuhr);
   fajr = fajr - today;
-  console.log(fajr);
   isha = isha - today;
-  console.log(isha);
   maghrib = maghrib - today;
-  console.log(maghrib);
 
   // create an alarms
   if(asr > 0) {
