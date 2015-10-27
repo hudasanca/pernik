@@ -2,6 +2,10 @@ chrome.alarms.onAlarm.addListener(function(alarm){
 
   if (alarm.name == "twitter") {
     getFromTwitter();
+    chrome.alarms.clear(alarm.name, function(){
+      return;
+    });
+
     return;
   }
 

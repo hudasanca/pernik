@@ -51,6 +51,11 @@ function getFromTwitter(){
             'tweets': tweets
           });
         });
+    },
+    complete: function(){
+      chrome.alarms.create('twitter', {
+        periodInMinutes: 1
+      });
     }
   });
 }
@@ -63,7 +68,7 @@ function filterByHashtag(data, hashtag){
   }
 
   for (var i = 0; i < data.length; i++){
-    var regex = new RegExp(hashtag);
+    var regex = new RegExp(hashtag, 'i');
 
     if (regex.test(data[i].text)) {
       result[result.length] = data[i];
@@ -73,7 +78,3 @@ function filterByHashtag(data, hashtag){
 }
 
 getFromTwitter();
-
-chrome.alarms.create('twitter', {
-  periodInMinutes: 1
-});
